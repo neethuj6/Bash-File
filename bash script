@@ -1,0 +1,10 @@
+#!/bin/bash
+#Bash script to add #include<openssl/bn.h> to all the .c and .h files in 
+#the current directory containing #include<openssl/rsa.h>  
+
+#Find all the .h and .c files that contain #include<openssl/rsa.h>
+for element in $(grep -l -e \#include\<openssl\/rsa\.h\> *.c *.h)
+do
+	#add #include<openssl/bn.h> as the first line of the file
+	echo $(sed  -i '1i \#include<openssl/bn.h>' $element)
+done
